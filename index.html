@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parsa Dashboard</title>
-<link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -85,17 +85,39 @@
 </div>
 
 <ul id="task-list"></ul>
+<div class="card">
+    <span class="icon">⏰</span>
+    <h3>تایمر هشدار</h3>
+    <p>برای خودت یک زمان یادآوری تنظیم کن</p>
+    <input type="time" id="alarm-time">
+<button type="button" id="set-alarm">تنظیم هشدار</button>
+<p id="alarm-message">هنوز هشداری تنظیم نشده</p>
+</div>
             </div>
 
         </section>
 
-    <footer>
-    <strong>ParsaTech</strong>
-    <p>با ساخت سید پارسا رضویان ❤️</p>
-    <small>© 2026 ParsaTech</small>
-</footer>
+        <footer><strong>ParsaTech</strong>
+
+<p>با ساخت سید پارسا رضویان ❤️</p>
+
+<small>© 2026 ParsaTech</small>
+        </footer>
 
     </div>
 <script src="script.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function() {
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(function() {
+                console.log("برنامه آماده است!");
+            })
+            .catch(function(error) {
+                console.log("خطا:", error);
+            });
+    });
+}
+</script>
 </body>
 </html>
