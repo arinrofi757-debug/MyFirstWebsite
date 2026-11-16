@@ -216,3 +216,49 @@ footer {
         transform: translateY(45px) scale(0.2);
     }
 }
+/* طراحی زیباتر بخش هشدار */
+#alarm-time {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 18px 0;
+    border: 1px solid #a78bfa;
+    border-radius: 12px;
+    background: #211b3d;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    outline: none;
+}
+
+#alarm-time:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 15px #38bdf866;
+}
+
+#set-alarm {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(120deg, #7651d9, #258bdc);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#set-alarm:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px #8055ff99;
+}
+
+#alarm-message {
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #ffffff12;
+    color: #c4b5fd;
+    text-align: center;
+}
