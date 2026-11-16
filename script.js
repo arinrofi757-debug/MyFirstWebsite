@@ -121,30 +121,39 @@ function showDate() {
 }
 
 showDate();
+
 // بخش کارهای روزانه
 const taskInput = document.getElementById("task-input");
 const addTaskButton = document.getElementById("add-task");
 const taskList = document.getElementById("task-list");
 
-function addTask() {
-    const taskText = taskInput.value.trim();
+function saveTasks() {
+    const tasks = [];
 
-    if (taskText === "") {
-        return;
-    }
+    taskList.querySelectorAll("li").forEach(function(li) {
+        tasks.push({
+            text: li.querySelector("span").textContent,
+            completed: li.querySelector('input[type="checkbox"]').checked
+        });
+    });
 
+    localStorage.setItem("parsaTasks", JSON.stringify(tasks));
+}
+
+function createTask(text, completed = false) {
     const li = document.createElement("li");
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.checked = completed;
 
     const span = document.createElement("span");
-    span.textContent = " " + taskText;
+    span.textContent = text;
+    span.style.textDecoration = completed ? "line-through" : "none";
 
     checkbox.addEventListener("change", function() {
-        span.style.textDecoration = checkbox.checked
-            ? "line-through"
-            : "none";
+        span.style.textDecoration = checkbox.checked ? "line-through" : "none";
+        saveTasks();
     });
 
     const deleteButton = document.createElement("button");
@@ -152,15 +161,23 @@ function addTask() {
 
     deleteButton.addEventListener("click", function() {
         li.remove();
+        saveTasks();
     });
 
     li.appendChild(checkbox);
     li.appendChild(span);
     li.appendChild(deleteButton);
-
     taskList.appendChild(li);
+}
 
+function addTask() {
+    const text = taskInput.value.trim();
+
+    if (text === "") return;
+
+    createTask(text);
     taskInput.value = "";
+    saveTasks();
 }
 
 addTaskButton.addEventListener("click", addTask);
@@ -169,7 +186,15 @@ taskInput.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         addTask();
     }
-});// حرکت هاله نورانی با موس
+});
+
+const savedTasks = JSON.parse(localStorage.getItem("parsaTasks") || "[]");
+
+savedTasks.forEach(function(task) {
+    createTask(task.text, task.completed);
+});
+
+
 document.addEventListener("mousemove", function(event) {
     document.documentElement.style.setProperty(
         "--mouse-x",
@@ -180,7 +205,9 @@ document.addEventListener("mousemove", function(event) {
         "--mouse-y",
         event.clientY + "px"
     );
-});document.addEventListener("mousemove", function(event) {
+});
+
+document.addEventListener("mousemove", function(event) {
     const drop = document.createElement("div");
 
     drop.className = "water-drop";
@@ -192,4 +219,59 @@ document.addEventListener("mousemove", function(event) {
     setTimeout(function() {
         drop.remove();
     }, 800);
+});// سیستم هشدار پارسا تک
+const alarmTime = document.getElementById("alarm-time");
+const setAlarmButton = document.getElementById("set-alarm");
+const alarmMessage = document.getElementById("alarm-message");
+
+let activeAlarm = null;
+let lastAlarm = "";
+
+setAlarmButton.addEventListener("click", function() {
+    if (alarmTime.value === "") {
+        alarmMessage.textContent = "لطفاً ساعت هشدار را انتخاب کن!";
+        return;
+    }
+
+    activeAlarm = alarmTime.value;
+    lastAlarm = "";
+
+    alarmMessage.textContent = "هشدار برای ساعت " + activeAlarm + " تنظیم شد! 🔔";
 });
+
+setInterval(function() {
+    if (activeAlarm === null) return;
+
+    const now = new Date();
+    const currentTime = now.toTimeString().slice(0, 5);
+
+    if (currentTime === activeAlarm && lastAlarm !== currentTime + now.toDateString()) {
+        lastAlarm = currentTime + now.toDateString();
+       playAlarmSound(); 
+        alert("⏰ پارسا تک: زمان هشدار فرا رسیده!");
+        activeAlarm = null;
+        alarmMessage.textContent = "هشدار به پایان رسید.";
+    }
+}, 1000);
+
+function playAlarmSound() {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = 880;
+
+    gain.gain.value = 0.3;
+
+    oscillator.start();
+
+    setTimeout(function() {
+        oscillator.stop();
+        audioContext.close();
+    }, 1500);
+}
