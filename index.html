@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parsa Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header class="header">
+            <div>
+                <p>خوش آمدی به</p>
+                <h1>میزکار پارسا</h1>
+            </div>
+            <div class="profile">P</div>
+        </header>
+
+        <section class="welcome">
+            <h2>همه چیز در یک جا!</h2>
+            <p>ابزارهای روزانه خودت را مدیریت کن.</p>
+        </section>
+
+        <section class="tools">
+
+            <div class="card">
+                <span class="icon">🕒</span>
+                <h3>ساعت دیجیتال</h3>
+                <p>نمایش ساعت</p>
+                <strong id="clock">00:00:00</strong>
+            </div>
+
+            <div class="card">
+                <span class="icon">📅</span>
+                <h3>تقویم</h3>
+                <p>مدیریت تاریخ</p>
+                <strong>تقویم من</strong>
+                <strong id="today-date">در حال نمایش تاریخ...</strong>
+            </div>
+
+            <div class="card">
+            
+<input id="calc-display" type="text" value="0" readonly>
+
+<div class="calculator-buttons">
+    <button type="button" data-action="clear">C</button>
+    <button type="button" data-action="delete">⌫</button>
+    <button type="button" data-value="/">÷</button>
+    <button type="button" data-value="*">×</button>
+
+    <button type="button" data-value="7">7</button>
+    <button type="button" data-value="8">8</button>
+    <button type="button" data-value="9">9</button>
+    <button type="button" data-value="-">−</button>
+
+    <button type="button" data-value="4">4</button>
+    <button type="button" data-value="5">5</button>
+    <button type="button" data-value="6">6</button>
+    <button type="button" data-value="+">+</button>
+
+    <button type="button" data-value="1">1</button>
+    <button type="button" data-value="2">2</button>
+    <button type="button" data-value="3">3</button>
+    <button type="button" data-action="equals">=</button>
+
+    <button type="button" data-value="0">0</button>
+    <button type="button" data-value=".">.</button>
+</div>
+
+            </div>
+
+            <div class="card">
+                <span class="icon">✅</span>
+                <h3>کارهای روزانه</h3>
+                <p>برنامه ریزی امروز</p>
+               <div class="todo-input">
+    <input type="text" id="task-input" placeholder="کار جدیدت رو بنویس...">
+    <button type="button" id="add-task">اضافه کن</button>
+</div>
+
+<ul id="task-list"></ul>
+            </div>
+
+        </section>
+
+        <footer>
+            ساخته شده با علاقه توسط پارسا ❤️
+        </footer>
+
+    </div>
+<script src="script.js"></script>
+</body>
+</html>

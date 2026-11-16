@@ -1,0 +1,218 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px;
+    background: linear-gradient(135deg, #10172f, #48317d);
+    color: white;
+    font-family: Tahoma, sans-serif;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.header p {
+    color: #c5b8ee;
+}
+
+.header h1 {
+    font-size: 32px;
+}
+
+.profile {
+    width: 55px;
+    height: 55px;
+    background: #8055d9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.welcome {
+    background: linear-gradient(120deg, #7651c9, #38276d);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px #0003;
+}
+
+.welcome h2 {
+    font-size: 26px;
+}
+
+.welcome p {
+    color: #e0d8f7;
+}
+
+.tools {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 25px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.icon {
+    font-size: 35px;
+}
+
+.card h3 {
+    font-size: 21px;
+}
+
+.card p {
+    color: #c5b8ee;
+}
+
+.card strong {
+    color: #d8c6ff;
+}
+
+footer {
+    text-align: center;
+    margin-top: 45px;
+    color: #c5b8ee;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    .tools {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* طراحی ماشین حساب */
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    direction: ltr;
+    margin-top: 12px;
+}
+
+#calc-display {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #17152e;
+    color: white;
+    font-size: 25px;
+    text-align: right;
+}
+
+.calculator-buttons button {
+    padding: 13px;
+    border: none;
+    border-radius: 9px;
+    background: #7450bd;
+    color: white;
+    font-size: 19px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.calculator-buttons button:hover {
+    background: #9875e8;
+    transform: scale(1.05);
+}
+
+.calculator-buttons button[data-action="equals"] {
+    background: #16a36a;
+}
+
+.calculator-buttons button[data-action="clear"] {
+    background: #d94b60;
+}
+/* طراحی بخش کارهای روزانه */
+.todo-input {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#task-input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #17152e;
+    color: white;
+    font-size: 14px;
+}
+
+#add-task {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    background: #7450bd;
+    color: white;
+    cursor: pointer;
+}
+
+#task-list {
+    padding: 0;
+    margin-top: 15px;
+    list-style: none;
+}
+
+#task-list li {
+    background: #302852;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    color: white;}
+  .water-drop {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle at 30% 30%, #ffffff, #8bdcff 45%, #568bff);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    animation: waterFall 0.8s ease-out forwards;
+}
+
+@keyframes waterFall {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(45px) scale(0.2);
+    }
+}
